@@ -5,9 +5,11 @@ import org.example.aad_finan_course_work.dto.PackageDTO;
 import org.example.aad_finan_course_work.dto.ResponseDTO;
 import org.example.aad_finan_course_work.dto.UserDTO;
 import org.example.aad_finan_course_work.service.PackageService;
+import org.example.aad_finan_course_work.util.ResponseUtil;
 import org.example.aad_finan_course_work.util.VarList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +36,13 @@ public class PackagesController {
         System.out.println("awaa "+ dtos);
         ResponseDTO responseDTO = new ResponseDTO(VarList.Created, "Success", dtos);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseUtil updatePackage(@PathVariable String id, @RequestBody PackageDTO packageDTO) {
+        packageDTO.setId(Integer.parseInt(id));
+        packageService.updatePackage(packageDTO);
+        return new ResponseUtil(200, "Package updated successfully", null);
     }
 }

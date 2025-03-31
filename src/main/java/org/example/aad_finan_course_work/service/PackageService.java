@@ -8,4 +8,5 @@ import java.util.List;
 public interface PackageService {
     int savePackage(PackageDTO packageDTO);
     List<PackageDTO> getAllpackages();
+    void updatePackage(PackageDTO packageDTO);
 }

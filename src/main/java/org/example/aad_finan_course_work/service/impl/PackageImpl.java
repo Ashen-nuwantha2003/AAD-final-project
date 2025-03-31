@@ -37,4 +37,13 @@ public class PackageImpl implements PackageService {
                 .map(packages -> modelMapper.map(packages,PackageDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void updatePackage(PackageDTO packageDTO) {
+        if (!packageRepo.existsById(packageDTO.getId())) {
+            throw new RuntimeException("Package does not exist!");
+        }
+        Packages packageEntity = modelMapper.map(packageDTO, Packages.class);
+        packageRepo.save(packageEntity);
+    }
 }
