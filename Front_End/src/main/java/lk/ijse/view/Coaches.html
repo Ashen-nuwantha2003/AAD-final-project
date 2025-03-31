@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>SriLankan Airlines Admin Dashboard</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+  <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --info: #17a2b8;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --sidebar-width: 250px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    .avatar {
+      font-size: 24px; /* Adjust size */
+      color: #333; /* Change color */
+      margin-right: 10px; /* Space between icon and text */
+    }
+
+
+    .dashboard-container {
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: linear-gradient(to bottom, #343a40, #212529);
+      position: fixed;
+      overflow-y: auto;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+
+    .sidebar-brand {
+      padding: 20px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-brand a {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .sidebar-brand a span {
+      color: var(--primary);
+    }
+
+    .sidebar-menu {
+      padding: 20px 0;
+    }
+
+    .sidebar-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-menu ul li {
+      padding: 0;
+      position: relative;
+    }
+
+    .sidebar-menu ul li a {
+      padding: 15px 25px;
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border-left: 4px solid transparent;
+    }
+
+    .sidebar-menu ul li a:hover,
+    .sidebar-menu ul li.active a {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--primary);
+    }
+
+    .sidebar-menu ul li a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .main-content {
+      width: calc(100% - var(--sidebar-width));
+      margin-left: var(--sidebar-width);
+      transition: all 0.3s;
+    }
+
+    .topbar {
+      background-color: #fff;
+      height: 70px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+
+    .toggle-sidebar {
+      font-size: 20px;
+      margin-right: 20px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      margin-right: 20px;
+    }
+
+    .search-form {
+      position: relative;
+    }
+
+    .search-form input {
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      border: 1px solid #eaeaea;
+      padding: 0 20px;
+      padding-left: 40px;
+      font-size: 14px;
+    }
+
+    .search-form button {
+      background: transparent;
+      border: none;
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .notification {
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .notification i {
+      font-size: 20px;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .notification .badge {
+      position: absolute;
+      top: -5px;
+      right: -8px;
+      background-color: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .user-profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .user-info {
+      line-height: 1.2;
+    }
+
+    .user-info h6 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .user-info span {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .content-wrapper {
+      padding: 30px;
+    }
+
+    .page-header {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-header h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .breadcrumb {
+      background: transparent;
+      padding: 0;
+      margin: 0;
+    }
+
+    .dashboard-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 25px;
+      margin-bottom: 30px;
+      transition: all 0.3s;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card {
+      border-left: 4px solid;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .stat-card .content h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .stat-card .content p {
+      font-size: 14px;
+      color: #888;
+      margin: 0;
+    }
+
+    .primary {
+      border-color: var(--primary);
+    }
+
+    .primary .icon {
+      background-color: var(--primary);
+    }
+
+    .success {
+      border-color: var(--success);
+    }
+
+    .success .icon {
+      background-color: var(--success);
+    }
+
+    .warning {
+      border-color: var(--warning);
+    }
+
+    .warning .icon {
+      background-color: var(--warning);
+    }
+
+    .danger {
+      border-color: var(--danger);
+    }
+
+    .danger .icon {
+      background-color: var(--danger);
+    }
+
+    .table-responsive {
+      margin-bottom: 0;
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 5px;
+    }
+
+    .custom-table thead th {
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 15px;
+      color: #666;
+      background-color: #f8f9fa;
+    }
+
+    .custom-table tbody tr {
+      background-color: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+    }
+
+    .custom-table tbody tr:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-table tbody td {
+      border: none;
+      padding: 15px;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .custom-table .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .custom-table .user-cell {
+      display: flex;
+      align-items: center;
+    }
+
+    .custom-table .user-info {
+      line-height: 1.2;
+    }
+
+    .custom-table .user-name {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .custom-table .user-email {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-admin {
+      background-color: rgba(0, 123, 255, 0.1);
+      color: var(--primary);
+    }
+
+    .status-agent {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--success);
+    }
+
+    .status-customer {
+      background-color: rgba(23, 162, 184, 0.1);
+      color: var(--info);
+    }
+
+    .btn-action {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5px;
+      transition: all 0.3s;
+    }
+
+    .btn-deactivate {
+      background-color: rgba(255, 193, 7, 0.1);
+      color: var(--warning);
+    }
+
+    .btn-deactivate:hover {
+      background-color: var(--warning);
+      color: #fff;
+    }
+
+    .btn-remove {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--danger);
+    }
+
+    .btn-remove:hover {
+      background-color: var(--danger);
+      color: #fff;
+    }
+
+    .add-new-user {
+      background-color: var(--primary);
+      color: white;
+      border-radius: 5px;
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .add-new-user:hover {
+      background-color: #0069d9;
+      transform: translateY(-2px);
+    }
+
+    .add-new-user i {
+      margin-right: 5px;
+    }
+
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+
+    </div>
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <a href="Admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        </li>
+        <li class="active">
+          <a href="AdminUser.html"><i class="fas fa-users"></i> User Management</a>
+        </li>
+        <li>
+          <a href="Coaches.html"><i class="fas fa-ticket-alt"></i> Coaches</a>
+        </li>
+        <li>
+          <a href="Packages.html"><i class="fas fa-plane"></i> Packages</a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-envelope"></i> Email Notifications</a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-chart-bar"></i> Reports</a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-cog"></i> Settings</a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Coaches Form</h2>
+    <form>
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" required>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="experience">Experience:</label>
+      <input type="text" id="experience" name="experience" required>
+
+      <label for="imagePath">Image Path:</label>
+      <input type="text" id="imagePath" name="imagePath" required>
+
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price" required>
+
+      <button id="loginId" type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
+</div>
+
+<div class="main-content">
+  <div class="content-wrapper">
+
+    <div class="dashboard-card">
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+          <tr>
+            <th>CoachesID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Experince</th>
+            <th>ImagePath</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody id="packageTable">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Required JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="../js/jquery.js"></script>
+
+<script>
+  $('#loginId').on('click',()=> {
+    let id = $('#id').val();
+    const name = $("#name").val()
+    const email = $("#email").val()
+    const experience = $("#experience").val()
+    const imagePath = $("#imagePath").val()
+    const price = $("#price").val()
+
+    const coaches = {
+      id: id,
+      name: name,
+      email: email,
+      experience: experience,
+      imagePath: imagePath,
+      price: price
+    }
+    $.ajax({
+      url: "http://localhost:8080/api/v1/coaches/save",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(coaches),
+      header: {
+        "Authorization": "Bearer" + localStorage.getItem("authToken")
+      },
+      success: function (response) {
+        loadAllcoaches();
+        alert("coaches added successfully");
+      },
+      error: function (error) {
+        alert("Error adding coaches");
+      }
+    });
+  });
+
+    function loadAllcoaches() {
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/coaches/getAll',
+        type: 'POST',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function(response) {
+          alert("its done")
+          console.log("test",response.data)
+          populateUserTable(response.data);
+
+        },
+        error: function(xhr, status, error) {
+          alert("Error loading users: " + error);
+        }
+      });
+    }
+
+  $(document).ready(function() {
+      loadAllcoaches();
+    });
+
+    // Toggle sidebar
+    $('.toggle-sidebar').click(function() {
+      $('.sidebar').toggleClass('active');
+      $('.main-content').toggleClass('active');
+    });
+
+    // Initialize tooltips (Bootstrap required)
+    if ($.fn.tooltip) {
+      $('[data-toggle="tooltip"]').tooltip();
+    }
+
+  function populateUserTable(coaches) {
+    let tableBody = $("#packageTable");
+    tableBody.empty(); // Clear existing rows
+
+    coaches.forEach(pkg => {
+      let row = `<tr>
+            <td>${pkg.id}</td>
+            <td>${pkg.name}</td>
+            <td>${pkg.email}</td>
+            <td>${pkg.experience}</td>
+            <td>${pkg.imagePath}</td>
+            <td>${pkg.price}</td>
+        </tr>`;
+      tableBody.append(row);
+    });
+  }
+
+</script>
+
+<!-- Add this script at the end of your HTML file before the closing </body> tag -->
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - HELPZ</title>
+    <link rel="stylesheet" href="../Stylesheet/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<div class="container" id="container">
+
+    <!-- Sign Up Form (this will be active by default) -->
+    <div class="form-container sign-up ">
+        <form  id="registerForm">
+            <h1 class="title">Sign Up</h1>
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" name="username" id="usernameU" required>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" name="email" id="emailU" required>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name="password" id="passwordU" required>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Confirm Password" name="confirmPassword" id="confirmPasswordU" required>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="User Or Admin" name="role" id="role" required>
+            </div>
+            <input type="submit" id="singupbtn" value="Sign up" class="btn">
+            <p class="social-text">Or Sign up with social platform</p>
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </form>
+    </div>
+    <!-- Sign In Form -->
+    <div class="form-container sign-in active">
+        <form >
+            <h1 class="title">Sign In</h1>
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Email" name="email" id="emailI" required>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name="password" id="passwordI" required>
+            </div>
+            <input type="submit" value="Sign in" class="btn" id="loginBtn">
+            <p class="social-text">Or Sign in with social platform</p>
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Toggle Container (optional if you want to switch between Sign Up and Sign In) -->
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <div class="content">
+                    <h3>Already a Member?</h3>
+                    <p>Welcome back! Sign page Donation is the act of giving resources, like money, time, or goods, to support a cause or help others. It creates positive change, funds essential services, and fosters empathy. Every contribution, big or small, makes a difference.</p>
+                    <button class="hidden btn" id="login">Sign In</button>
+                </div>
+                <img src="../images/event-1.jpg" alt="" class="image">
+            </div>
+            <div class="toggle-panel toggle-right">
+                <div class="content">
+                    <h3>New to Helpz?</h3>
+                    <p>
+                        Donation is the act of giving resources, like money, time, or goods, to support a cause or help others. It creates positive change, funds essential services, and fosters empathy. Every contribution, big or small, makes a difference.
+                    </p>
+                    <button class="hidden btn" id="register">Sign Up</button>
+                </div>
+                <img src="../images/causes-4.jpg" alt="" class="image">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
+<script>
+    const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+    registerBtn.addEventListener('click', () => {
+        container.classList.add('active');
+    });
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove('active');
+    });
+
+    $(document).ready(function () {
+        $("#registerForm").submit(function (event) {
+            event.preventDefault();
+
+            const name = $("#usernameU").val()
+            const email = $("#emailU").val()
+            const password = $("#passwordU").val()
+            const confirmPassword = $("#confirmPasswordU").val()
+            const role = $("#role").val()
+
+            const user = {
+                name: name,
+                email: email,
+                password: password,
+                role: role
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            //ajax request
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/v1/user/register",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                    role: role
+                }),
+                success: function (response) {
+                    console.log(response);
+                    alert("Registration Successful!");
+                    localStorage.setItem("token", response.data.token);
+                    window.location.href = "register.html";
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert("Registration Failed!");
+                }
+            });
+
+
+
+        });
+    });
+    document.getElementById("loginBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const email = $("#emailI").val();
+        const password = $("#passwordI").val();
+
+        if (!email || !password) {
+            alert("Please enter both email and password.");
+            return;
+        }
+
+        // Send login request
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/v1/auth/authenticate",
+            contentType: "application/json",
+            data: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            success: function (response) {
+                console.log(response);
+                alert("Login Successful!");
+                localStorage.setItem("token", response.data.token);
+                const decoded = jwt_decode(response.data.token);
+                console.log(decoded.role)
+
+                if(decoded.role === "admin"){
+                    console.log("Redirecting to admin dashboard");
+                    window.location.href = "../view/Admin.html";
+                }else{
+                    console.log("Redirecting to home page");
+                    window.location.href = "../gymlife-master/index.html";
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+                alert("Login Failed: " + xhr.responseText);
+            }
+        });
+    });
+
+    /*function getUser(email) {
+
+        $.ajax({
+            url: "http://localhost:8080/api/v1/user/getUser",
+            method: 'GET',
+            async: true,
+            contentType: 'application/json',
+            data: JSON.stringify({
+                email:email
+            }),
+            headers: {
+                Authorization: 'Bearer '+ localStorage.getItem("token")
+            },
+
+            success: function (response) {
+                console.log(response);
+
+                if (response.data.role === "admin") {
+                    console.log("Redirecting to admin dashboard");
+                    window.location.href = "adminDashboard.html";
+                } else {
+                    console.log("Redirecting to home page");
+                    window.location.href = "home.html";
+                }
+            },
+            error: function (xhr, status, error) {
+
+                alert("Failed to fetch user details: " + xhr.responseText);
+            }
+        });
+    }
+*/
+
+    function login(){}
+</script>
+
+</body>
+</html>
