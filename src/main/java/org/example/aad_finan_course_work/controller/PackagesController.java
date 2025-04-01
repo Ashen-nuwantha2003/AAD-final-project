@@ -24,7 +24,6 @@ public class PackagesController {
     public PackagesController(PackageService packageService) {this.packageService = packageService;}
     @PostMapping(value = "/save")
     public ResponseEntity<ResponseDTO> savePackage(@RequestBody @Validated PackageDTO packageDTO){
-        System.out.println(packageDTO+"me dan awe");
         int Result = packageService.savePackage(packageDTO);
         ResponseDTO responseDTO = new ResponseDTO(VarList.Created,"Package Active Successfully", Result);
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);

@@ -8,4 +8,5 @@ import java.util.List;
 public interface CoachesService {
     int saveCoaches(CoachesDTO coachesDTO);
     List<CoachesDTO> getAllcoaches();
+    void updateCoaches(CoachesDTO coachesDTO);
 }

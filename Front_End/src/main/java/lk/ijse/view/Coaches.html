@@ -477,6 +477,7 @@
     }
     button {
       width: 100%;
+      margin: 5px;
       padding: 10px;
       background-color: blue;
       color: white;
@@ -545,6 +546,8 @@
       <input type="text" id="price" name="price" required>
 
       <button id="loginId" type="submit">Submit</button>
+      <button id="clearBtn" type="clear">Clear</button>
+
     </form>
   </div>
 
@@ -586,7 +589,7 @@
 <script src="../js/jquery.js"></script>
 
 <script>
-  $('#loginId').on('click',()=> {
+  $('#loginId').on("click",()=> {
     let id = $('#id').val();
     const name = $("#name").val()
     const email = $("#email").val()
@@ -620,7 +623,8 @@
     });
   });
 
-    function loadAllcoaches() {
+
+  function loadAllcoaches() {
       $.ajax({
         url: 'http://localhost:8080/api/v1/coaches/getAll',
         type: 'POST',
@@ -671,9 +675,36 @@
     });
   }
 
-</script>
 
-<!-- Add this script at the end of your HTML file before the closing </body> tag -->
+  // Table row click event
+  $("#packageTable").on("click", "tr", function () {
+    console.log("Table row clicked!");
+
+    // Table column values read
+    const coachId = $(this).find("td:eq(0)").text().trim();
+    const name = $(this).find("td:eq(1)").text().trim();
+    const email = $(this).find("td:eq(2)").text().trim();
+    const experience = $(this).find("td:eq(3)").text().trim();
+    const imagePath = $(this).find("td:eq(4)").text().trim();
+    const price = $(this).find("td:eq(5)").text().trim();
+
+    console.log("Coach ID:", coachId);
+
+    // Form fields update
+    $("#id").val(coachId);
+    $("#name").val(name);
+    $("#email").val(email);
+    $("#experience").val(experience);
+    $("#imagePath").val(imagePath);
+    $("#price").val(price);
+  });
+
+
+  $("#clearBtn").click(function() {
+    clearForm();
+  });
+
+</script>
 
 </body>
 </html>

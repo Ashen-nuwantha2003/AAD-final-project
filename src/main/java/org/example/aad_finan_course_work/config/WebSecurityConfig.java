@@ -136,6 +136,7 @@ public class WebSecurityConfig {
                                 "/api/v1/contact/saveMasage",
                                 "api/v1/coaches/save",
                                 "api/v1/coaches/getAll",
+                                "api/v1/coaches/update",
                                 "/api/v1/products/save",
                                 "/api/v1/auth/checkRole",
                                 "/api/v1/packages/save",
