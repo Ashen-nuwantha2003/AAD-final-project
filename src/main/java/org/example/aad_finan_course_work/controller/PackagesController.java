@@ -32,7 +32,6 @@ public class PackagesController {
     @PostMapping("/getAll")
     public ResponseEntity<ResponseDTO> getAllpackages() {
         List<PackageDTO> dtos = packageService.getAllpackages();
-        System.out.println("awaa "+ dtos);
         ResponseDTO responseDTO = new ResponseDTO(VarList.Created, "Success", dtos);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
@@ -44,4 +43,5 @@ public class PackagesController {
         packageService.updatePackage(packageDTO);
         return new ResponseUtil(200, "Package updated successfully", null);
     }
+
 }
