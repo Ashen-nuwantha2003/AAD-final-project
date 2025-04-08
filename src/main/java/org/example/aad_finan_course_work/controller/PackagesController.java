@@ -29,7 +29,7 @@ public class PackagesController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public ResponseEntity<ResponseDTO> getAllpackages() {
         List<PackageDTO> dtos = packageService.getAllpackages();
         ResponseDTO responseDTO = new ResponseDTO(VarList.Created, "Success", dtos);
