@@ -145,8 +145,8 @@ public class WebSecurityConfig {
                                 "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ✅ Enforce stateless session (JWT-based)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) // ✅ Apply JWT Filter
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
@@ -154,7 +154,7 @@ public class WebSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("http://localhost:63342")); // ✅ Allow frontend URL
+        configuration.setAllowedOrigins(List.of("http://localhost:63342"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 

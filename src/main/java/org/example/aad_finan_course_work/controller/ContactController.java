@@ -1,25 +1,20 @@
 package org.example.aad_finan_course_work.controller;
 
-import org.example.aad_finan_course_work.dto.AuthDTO;
+
 import org.example.aad_finan_course_work.dto.ContactDTO;
 import org.example.aad_finan_course_work.dto.ResponseDTO;
-import org.example.aad_finan_course_work.dto.UserDTO;
 import org.example.aad_finan_course_work.service.ContactService;
-import org.example.aad_finan_course_work.util.JwtUtil;
 import org.example.aad_finan_course_work.util.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("api/v1/contact")
 public class ContactController {
-@Autowired
+    @Autowired
     private ContactService contactService;
 
     @PostMapping("/saveMasage")

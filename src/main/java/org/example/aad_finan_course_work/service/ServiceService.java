@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface ServiceService {
     int saveService(ServiceDTO serviceDTO);
-
     List<ServiceDTO> getAllservice();
 }

@@ -1,6 +1,5 @@
 package org.example.aad_finan_course_work.controller;
 
-
 import org.example.aad_finan_course_work.dto.CoachesDTO;
 import org.example.aad_finan_course_work.dto.ResponseDTO;
 import org.example.aad_finan_course_work.service.CoachesService;
@@ -41,7 +40,7 @@ public class CoachesController {
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('admin')")
     public ResponseUtil updateCoaches(@PathVariable String id, @RequestBody CoachesDTO coachesDTO) {
-        coachesDTO.setId(Integer.parseInt(id));  // Assuming 'offerId' is the identifier
+        coachesDTO.setId(Integer.parseInt(id));
         coachesService.updateCoaches(coachesDTO);
         return new ResponseUtil(200, "Coaches Updated Successfully", null);
     }

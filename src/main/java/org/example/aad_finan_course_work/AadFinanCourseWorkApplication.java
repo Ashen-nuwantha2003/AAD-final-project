@@ -7,7 +7,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 @SpringBootApplication
 public class AadFinanCourseWorkApplication {
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(AadFinanCourseWorkApplication.class, args);
 	}

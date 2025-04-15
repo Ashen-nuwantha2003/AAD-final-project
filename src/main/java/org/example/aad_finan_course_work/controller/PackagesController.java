@@ -3,7 +3,6 @@ package org.example.aad_finan_course_work.controller;
 
 import org.example.aad_finan_course_work.dto.PackageDTO;
 import org.example.aad_finan_course_work.dto.ResponseDTO;
-import org.example.aad_finan_course_work.dto.UserDTO;
 import org.example.aad_finan_course_work.service.PackageService;
 import org.example.aad_finan_course_work.util.ResponseUtil;
 import org.example.aad_finan_course_work.util.VarList;

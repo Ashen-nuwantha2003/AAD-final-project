@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
     private final JwtUtil jwtUtil;
 
-    // Constructor injection
+
     public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
@@ -69,8 +69,6 @@ public class UserController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<ResponseDTO> registerUser(@RequestBody  UserDTO userDTO) {
-        System.out.println("Register");
-        System.out.println("gggggggggggggggggggggggggggggggggggggggg"+userDTO.getEmail());
         System.out.println(userDTO.getRole());
         System.out.println(userDTO.getName());
         try {
