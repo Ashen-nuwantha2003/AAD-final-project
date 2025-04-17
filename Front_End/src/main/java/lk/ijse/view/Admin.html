@@ -663,13 +663,10 @@
                     <a href=""><i class="fas fa-envelope"></i> Email Notifications</a>
                 </li>
                 <li>
-                    <a href=""><i class="fas fa-chart-bar"></i>Airplanes Management</a>
-                </li>
-                <li>
                     <a href=""><i class="fas fa-cog"></i> Settings</a>
                 </li>
                 <li>
-                    <a href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="../view/register.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             </ul>
         </div>
@@ -721,8 +718,8 @@
                 <div class="col-md-3">
                     <div class="dashboard-card stat-card primary">
                         <div class="content">
-                            <h4>5,687</h4>
-                            <p>Total Bookings</p>
+                            <h4>1,657</h4>
+                            <p>Total Appointment</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-ticket-alt"></i>
@@ -732,7 +729,7 @@
                 <div class="col-md-3">
                     <div class="dashboard-card stat-card success">
                         <div class="content">
-                            <h4>2,348</h4>
+                            <h4>134</h4>
                             <p>Active Users</p>
                         </div>
                         <div class="icon">
@@ -743,11 +740,11 @@
                 <div class="col-md-3">
                     <div class="dashboard-card stat-card warning">
                         <div class="content">
-                            <h4>587</h4>
-                            <p>Upcoming Flights</p>
+                            <h4>87</h4>
+                            <p>Upcoming Offers</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-plane-departure"></i>
+                            <i class=""></i>
                         </div>
                     </div>
                 </div>
@@ -885,7 +882,7 @@
                             </table>
                         </div>
                         <div class="text-center mt-3">
-                            <a href="admin-bookings.html" class="btn btn-primary">View All Bookings</a>
+                            <a href="admin-bookings.html" class="btn btn-primary">View All Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -902,129 +899,129 @@
             </div>
 
             <!-- Flight Timetable Updates -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="dashboard-card">
-                        <h5 class="section-title">Today's Flight Schedule</h5>
-                        <div class="flight-timetable">
-                            <!-- Flight 1 -->
-                            <div class="dashboard-card flight-card">
-                                <div class="flight-info">
-                                    <div class="flight-route">
-                                        <div class="departure">
-                                            <div class="airport-code">CMB</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">10:30 AM</div>
-                                            </div>
-                                        </div>
-                                        <div class="flight-line">
-                                            <i class="fas fa-plane flight-icon"></i>
-                                        </div>
-                                        <div class="arrival">
-                                            <div class="airport-code">BKK</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">01:45 PM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flight-details">
-                                        <div class="flight-number">UL402</div>
-                                        <div class="flight-status on-time">On Time</div>
-                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>
-                                    </div>
-                                </div>
-                            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-12">-->
+<!--                    <div class="dashboard-card">-->
+<!--                        <h5 class="section-title">Today's Flight Schedule</h5>-->
+<!--                        <div class="flight-timetable">-->
+<!--                            &lt;!&ndash; Flight 1 &ndash;&gt;-->
+<!--                            <div class="dashboard-card flight-card">-->
+<!--                                <div class="flight-info">-->
+<!--                                    <div class="flight-route">-->
+<!--                                        <div class="departure">-->
+<!--                                            <div class="airport-code">CMB</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">10:30 AM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="flight-line">-->
+<!--                                            <i class="fas fa-plane flight-icon"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="arrival">-->
+<!--                                            <div class="airport-code">BKK</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">01:45 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="flight-details">-->
+<!--                                        <div class="flight-number">UL402</div>-->
+<!--                                        <div class="flight-status on-time">On Time</div>-->
+<!--                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
 
-                            <div class="dashboard-card flight-card">
-                                <div class="flight-info">
-                                    <div class="flight-route">
-                                        <div class="departure">
-                                            <div class="airport-code">CMB</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">12:15 PM</div>
-                                            </div>
-                                        </div>
-                                        <div class="flight-line">
-                                            <i class="fas fa-plane flight-icon"></i>
-                                        </div>
-                                        <div class="arrival">
-                                            <div class="airport-code">SIN</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">02:45 PM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flight-details">
-                                        <div class="flight-number">UL306</div>
-                                        <div class="flight-status delayed">Delayed (30m)</div>
-                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="dashboard-card flight-card">-->
+<!--                                <div class="flight-info">-->
+<!--                                    <div class="flight-route">-->
+<!--                                        <div class="departure">-->
+<!--                                            <div class="airport-code">CMB</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">12:15 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="flight-line">-->
+<!--                                            <i class="fas fa-plane flight-icon"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="arrival">-->
+<!--                                            <div class="airport-code">SIN</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">02:45 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="flight-details">-->
+<!--                                        <div class="flight-number">UL306</div>-->
+<!--                                        <div class="flight-status delayed">Delayed (30m)</div>-->
+<!--                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                            <!-- Flight 3 -->
-                            <div class="dashboard-card flight-card">
-                                <div class="flight-info">
-                                    <div class="flight-route">
-                                        <div class="departure">
-                                            <div class="airport-code">CMB</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">3:30 PM</div>
-                                            </div>
-                                        </div>
-                                        <div class="flight-line">
-                                            <i class="fas fa-plane flight-icon"></i>
-                                        </div>
-                                        <div class="arrival">
-                                            <div class="airport-code">DEL</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">7:15 PM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flight-details">
-                                        <div class="flight-number">UL195</div>
-                                        <div class="flight-status on-time">On Time</div>
-                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            &lt;!&ndash; Flight 3 &ndash;&gt;-->
+<!--                            <div class="dashboard-card flight-card">-->
+<!--                                <div class="flight-info">-->
+<!--                                    <div class="flight-route">-->
+<!--                                        <div class="departure">-->
+<!--                                            <div class="airport-code">CMB</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">3:30 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="flight-line">-->
+<!--                                            <i class="fas fa-plane flight-icon"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="arrival">-->
+<!--                                            <div class="airport-code">DEL</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">7:15 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="flight-details">-->
+<!--                                        <div class="flight-number">UL195</div>-->
+<!--                                        <div class="flight-status on-time">On Time</div>-->
+<!--                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                            <!-- Flight 4 -->
-                            <div class="dashboard-card flight-card">
-                                <div class="flight-info">
-                                    <div class="flight-route">
-                                        <div class="departure">
-                                            <div class="airport-code">CMB</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">11:45 PM</div>
-                                            </div>
-                                        </div>
-                                        <div class="flight-line">
-                                            <i class="fas fa-plane flight-icon"></i>
-                                        </div>
-                                        <div class="arrival">
-                                            <div class="airport-code">LHR</div>
-                                            <div class="flight-times">
-                                                <div class="flight-time">6:20 AM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flight-details">
-                                        <div class="flight-number">UL503</div>
-                                        <div class="flight-status cancelled">Cancelled</div>
-                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <a href="admin-flights.html" class="btn btn-primary">View All Flights</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                            &lt;!&ndash; Flight 4 &ndash;&gt;-->
+<!--                            <div class="dashboard-card flight-card">-->
+<!--                                <div class="flight-info">-->
+<!--                                    <div class="flight-route">-->
+<!--                                        <div class="departure">-->
+<!--                                            <div class="airport-code">CMB</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">11:45 PM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="flight-line">-->
+<!--                                            <i class="fas fa-plane flight-icon"></i>-->
+<!--                                        </div>-->
+<!--                                        <div class="arrival">-->
+<!--                                            <div class="airport-code">LHR</div>-->
+<!--                                            <div class="flight-times">-->
+<!--                                                <div class="flight-time">6:20 AM</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="flight-details">-->
+<!--                                        <div class="flight-number">UL503</div>-->
+<!--                                        <div class="flight-status cancelled">Cancelled</div>-->
+<!--                                        <button class="btn btn-sm btn-primary mt-2" data-toggle="modal" data-target="#editFlightModal">Update</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="text-center mt-3">-->
+<!--                            <a href="admin-flights.html" class="btn btn-primary">View All Flights</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <!-- Revenue & Bookings Analytics -->
             <div class="row">
